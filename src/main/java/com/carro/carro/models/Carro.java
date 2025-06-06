@@ -1,23 +1,35 @@
+
+
 package com.carro.carro.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity(name = "tb_carro")
 public class Carro {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String marca;
     private String modelo;
     private int ano;
+    public Carro() {}
 
-    public Carro(int id, String marca, String modelo, int ano) {
+    public Carro(long id, String marca, String modelo) {
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
+
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -25,12 +25,12 @@ public class CarroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Carro> getCarro(@PathVariable int id) {
+    public ResponseEntity<Carro> getCarro(@PathVariable long id) {
         return ResponseEntity.ok(this.carroService.getCarro(id));
     }
 
     @PutMapping({"/{id}"})
-    public Carro updateCarro(@PathVariable int id, @RequestBody Carro carro) {
+    public Carro updateCarro(@PathVariable Long id, @RequestBody Carro carro) {
         return this.carroService.updateCarro(carro, id);
     }
 
@@ -42,7 +42,7 @@ public class CarroController {
     }
 
     @DeleteMapping({"/{id}"})
-    public ResponseEntity<Void> deleteCarro(@PathVariable int id) {
+    public ResponseEntity<Void> deleteCarro(@PathVariable long id) {
         this.carroService.deleteCarro(id);
         return ResponseEntity.noContent().build();
     }

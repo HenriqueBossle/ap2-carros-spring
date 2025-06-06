@@ -14,24 +14,30 @@ public class CarroService {
         this.carroRepository = carroRepository;
     }
 
-    public Carro getCarro(int id) {
-        return this.carroRepository.getCarro(id);
+    public Carro getCarro(Long id) {
+        return this.carroRepository.findById(id).orElseThrow();
     }
 
     public List<Carro> getCarros() {
-        return this.carroRepository.getListacarros();
+        return this.carroRepository.findAll();
     }
 
     public Carro createCarro(Carro carro) {
-        return this.carroRepository.createCarro(carro);
+        return this.carroRepository.save(carro);
     }
 
-    public Carro updateCarro(Carro carro, int id) {
-        return this.carroRepository.updateCarro(carro, id);
+    public Carro updateCarro(Carro carro, long id) {
+        Carro carroEntity = this.carroRepository.getReferenceById(id);
+        carroEntity.setMarca(carro.getMarca());
+        carroEntity.setModelo(carro.getModelo());
+        carroEntity.setAno(carro.getAno());
+        this.carroRepository.save(carroEntity);
+        return this.carroRepository.save(carroEntity);
+
     }
 
-    public void deleteCarro(int id) {
-        this.carroRepository.deleteCarro(id);
+    public void deleteCarro(Long id) {
+        this.carroRepository.delete(this.carroRepository.getReferenceById(id));
     }
 
 
